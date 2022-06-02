@@ -8,16 +8,18 @@ const App = () => {
 
   const handleOnPressToogle = () => setToogle(oldToogle=>!oldToogle);
    
+  // Liga o flash do celulas
   useEffect(()=>{
     Torch.switchState(toogle);
   },[toogle]);
 
   useEffect(()=>{
+    // Quando chaqualhar o celular a lanterna liga
     const sbscription = Shake.addListener(()=>{
       setToogle(oldToogle=>oldToogle);
     });
 
-
+    // Esta função é chamada quando o componente for desmontado
     return ()=> sbscription.remove();
   },[]);
 
